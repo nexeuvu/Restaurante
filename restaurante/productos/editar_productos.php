@@ -5,6 +5,18 @@ require_once __DIR__ . '/../config/database.php';
 $esNuevo = true;
 $mensaje = '';
 
+$categorias = [
+    'Entradas',
+    'Sopas y Cremas',
+    'Ceviches y Mariscos',
+    'Platos de Fondo (Platos Principales)',
+    'Parrillas y Carnes',
+    'Pastas y Arroces',
+    'Vegetarianos y Veganos',
+    'Postres',
+    'Bebidas y Refrescos'
+];
+
 if (isset($_GET['id'])) {
     $esNuevo = false;
     $id = new MongoDB\BSON\ObjectId($_GET['id']);
@@ -74,7 +86,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <div class="mb-3">
                 <label for="categoria" class="form-label">Categoría *</label>
-                <input type="text" class="form-control" id="categoria" name="categoria" value="<?php echo htmlspecialchars($producto['categoria']); ?>" required>
+                <select class="form-select" id="categoria" name="categoria" required>
+                    <option value="">Selecciona una categoría</option>
+                    <?php foreach ($categorias as $cat): ?>
+                        <option value="<?php echo htmlspecialchars($cat); ?>"><?php echo htmlspecialchars($cat); ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
 
             <div class="mb-3">

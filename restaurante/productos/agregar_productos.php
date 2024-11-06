@@ -4,7 +4,6 @@ require_once __DIR__ . '/../config/database.php';
 
 $mensaje = '';
 
-// Las categorías predefinidas
 $categorias = [
     'Entradas',
     'Sopas y Cremas',
